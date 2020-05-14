@@ -11,10 +11,24 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
+    "esModuleInterop": true,
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-humanize-duration": [
+        "dist/ngx-humanize-duration/ngx-humanize-duration",
+        "dist/ngx-humanize-duration"
+      ],
+      "@angular/*": [
+        "./node_modules/@angular/*"
+      ],
+      "humanize-duration":[
+        "./node_modules/humanize-duration"
+      ]
+
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
