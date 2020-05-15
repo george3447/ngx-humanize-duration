@@ -1,6 +1,8 @@
 # Angular Humanize Duration
 
-Angular wrapper for [Humanize Duration](https://www.npmjs.com/package/humanize-duration) library. Provides angular pipe and service.
+[![npm version](https://badge.fury.io/js/ngx-humanize-duration.svg)](https://badge.fury.io/js/ngx-humanize-duration)
+
+Angular wrapper for [Humanize Duration](https://www.npmjs.com/package/humanize-duration) library. Provides Angular pipe and service.
 
 ## Installation
 
@@ -24,30 +26,102 @@ import { NgxHumanizeDurationModule } from 'ngx-humanize-duration';
 
 ## Usage
 
-With `pipe` in templates:
+With pipe in templates
 
 ```html
 <p>
-  {{ yearMillieSeconds | humanizeDuration:{ delimiter: ' and ', largest:2 } }}
+  {{ yearInMillieSeconds | humanizeDuration:{ delimiter: ' and ', largest:2 } }}
 </p>
 ```
 
-With a `service` or `component.ts`:
+With a service
 
 ```ts
-import { NgxHumanizeDurationService } from 'ngx-humanize-duration';
-import { Options } from 'humanize-duration';
+import {
+  NgxHumanizeDurationOptions,
+  NgxHumanizeDurationService,
+} from "ngx-humanize-duration";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MyService {
+  constructor(private ngxHumanizeDurationService: NgxHumanizeDurationService) {}
 
-  constructor(private ngxHumanizeDurationService: NgxHumanizeDurationService) { }
-
-  humanizeDuration(value: number, options?: Options) {
-    return this.ngxHumanizeDurationService.humanizeDuration(value, options)
+  humanizeDuration(value: number, options?: NgxHumanizeDurationOptions) {
+    return this.ngxHumanizeDurationService.humanizeDuration(value, options);
   }
+}
+```
 
+## Advanced Usage
+
+If you find yourself setting same options over and over again, you can set the defaults using forRoot method, which you can still override at Module or Component or Service level
+
+```typescript
+import { NgxHumanizeDurationModule, NgxHumanizerOptions } from 'ngx-humanize-duration';
+
+const defaults: NgxHumanizerOptions = {};
+
+@NgModule({
+  imports: [
+    NgxHumanizeDurationModule.forRoot(defaults)
+  ],
+})
+```
+
+If you have Lazy Loaded modules and you want to use the defaults that you have set using above method, just import the NgxHumanizeDurationModule
+
+```typescript
+import { NgxHumanizeDurationModule, NgxHumanizerOptions } from 'ngx-humanize-duration';
+
+const defaults: NgxHumanizerOptions = {};
+
+@NgModule({
+  imports: [
+    NgxHumanizeDurationModule
+  ],
+})
+```
+
+If you want to override the defaults at Module Level
+
+```typescript
+import { NgxHumanizeDurationModule, NgxHumanizerOptions } from 'ngx-humanize-duration';
+
+const moduleLevelOptions: NgxHumanizerOptions = {};
+
+@NgModule({
+  imports: [
+    NgxHumanizeDurationModule.forFeature(moduleLevelOptions)
+  ],
+})
+```
+
+If you want to override the defaults at Component level
+
+```html
+<p>
+  {{ yearInMillieSeconds | humanizeDuration:{ componentLevelOptions } }}
+</p>
+```
+
+If you want to override the defaults at Component level
+
+```ts
+import { NgxHumanizeDurationService } from "ngx-humanize-duration";
+
+@Injectable({
+  providedIn: "root",
+})
+export class MyService {
+  constructor(private ngxHumanizeDurationService: NgxHumanizeDurationService) {}
+
+  humanizeDuration() {
+    const humanizedDuration = this.ngxHumanizeDurationService.humanizeDuration(
+      value,
+      newOptions
+    );
+  }
 }
 ```
