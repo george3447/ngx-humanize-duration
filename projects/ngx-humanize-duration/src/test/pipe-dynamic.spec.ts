@@ -1,43 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import * as ms from 'ms';
 
-import { NgxHumanizeDurationComponent } from './ngx-humanize-duration.component';
-import { NgxHumanizeDurationPipe } from './ngx-humanize-duration.pipe';
+import { TestComponent } from './utils/test.component';
+import { NgxHumanizeDurationModule } from '../lib/ngx-humanize-duration.module';
+import { getElementValueByClassName } from './utils/utils';
 
 
-describe('NgxHumanizeDurationComponent', () => {
-  let component: NgxHumanizeDurationComponent;
-  let fixture: ComponentFixture<NgxHumanizeDurationComponent>;
+describe('Pipe with dynamic inputs', () => {
+  let component: TestComponent;
+  let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async(() => {
+
     TestBed.configureTestingModule({
-      declarations: [NgxHumanizeDurationComponent, NgxHumanizeDurationPipe]
-    })
-      .compileComponents();
-  }));
+      declarations: [TestComponent],
+      imports: [NgxHumanizeDurationModule]
+    }).compileComponents();
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NgxHumanizeDurationComponent);
+    fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should humanize millisecond to seconds when using options directly in template', () => {
-    expect(getElementValueByClassName(fixture, '.normal')).toEqual('1 second');
-  });
-
-  it('should humanize millisecond to seconds when using empty options', () => {
-    expect(getElementValueByClassName(fixture, '.normal-without-option')).toEqual('1 second');
-  });
-
-  it('should humanize millisecond to seconds when using options dynamically', () => {
-    expect(getElementValueByClassName(fixture, '.normal-dynamic-options')).toEqual('1 second');
-  });
+  }));
 
   it('should humanize millisecond to seconds when using dynamic input with dynamic options', () => {
     component.millieSeconds = 1000;
@@ -208,39 +190,4 @@ describe('NgxHumanizeDurationComponent', () => {
 
   });
 
-
-  it('should humanize and overwrite the languages property in the initializer', () => {
-    component.options = {
-      languages: {
-        en: {
-          y: () => 'y',
-          mo: () => 'mo',
-          w: () => 'w',
-          d: () => 'd',
-          h: () => 'h',
-          m: () => 'm',
-          s: () => 's',
-          ms: () => 'ms',
-        }
-      }
-    };
-
-    component.millieSeconds = 1000;
-    fixture.detectChanges();
-    expect(getElementValueByClassName(fixture, '.dynamic')).toEqual('1 s');
-
-    component.millieSeconds = 15600000;
-    fixture.detectChanges();
-    expect(getElementValueByClassName(fixture, '.dynamic')).toEqual('4 h, 20 m');
-
-    component.millieSeconds = 71750;
-    fixture.detectChanges();
-    expect(getElementValueByClassName(fixture, '.dynamic')).toEqual('1 m, 11.75 s');
-
-  });
-
 });
-
-function getElementValueByClassName(fixture: ComponentFixture<NgxHumanizeDurationComponent>, className: string) {
-  return fixture.debugElement.query(By.css(className)).nativeElement.textContent.trim();
-}

@@ -1,6 +1,50 @@
 {
   "name": "ngx-humanize-duration",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/george3447/ngx-humanize-duration"
+  },
+  "author": {
+    "name": "Georgekutty Antony",
+    "email": "georgekuttyantony@gmail.com"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "angular 2",
+    "angular4",
+    "angular 4",
+    "angular5",
+    "angular 5",
+    "angular 6",
+    "angular6",
+    "angular7",
+    "angular8",
+    "angular 8",
+    "angular9",
+    "angular 9",
+    "angularx",
+    "angular-x",
+    "ng",
+    "ngx",
+    "ng2",
+    "ng4",
+    "ng5",
+    "humanize",
+    "duration",
+    "time",
+    "hours",
+    "minutes",
+    "seconds",
+    "days",
+    "years",
+    "months"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/george3447/ngx-humanize-duration/issues"
+  },
   "peerDependencies": {
     "@angular/common": "^9.1.7",
     "@angular/core": "^9.1.7",

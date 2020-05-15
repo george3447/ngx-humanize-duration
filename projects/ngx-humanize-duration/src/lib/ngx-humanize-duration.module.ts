@@ -1,13 +1,31 @@
-import { NgModule } from '@angular/core';
-import { NgxHumanizeDurationComponent } from './ngx-humanize-duration.component';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+
 import { NgxHumanizeDurationPipe } from './ngx-humanize-duration.pipe';
-
-
+import { NgxHumanizerOptions, NGX_HUMANIZER_CONFIG } from './ngx-humanize-duration.types';
+import { NgxHumanizeDurationService } from './ngx-humanize-duration.service';
 
 @NgModule({
-  declarations: [NgxHumanizeDurationComponent, NgxHumanizeDurationPipe],
-  imports: [
-  ],
-  exports: [NgxHumanizeDurationPipe]
+  declarations: [NgxHumanizeDurationPipe],
+  imports: [],
+  exports: [NgxHumanizeDurationPipe],
+  providers: []
 })
-export class NgxHumanizeDurationModule { }
+export class NgxHumanizeDurationModule {
+  static forRoot(config?: NgxHumanizerOptions): ModuleWithProviders {
+    return {
+      ngModule: NgxHumanizeDurationModule,
+      providers: [
+        { provide: NGX_HUMANIZER_CONFIG, useValue: config },
+      ]
+    };
+  }
+  static forFeature(config?: NgxHumanizerOptions): ModuleWithProviders {
+    return {
+      ngModule: NgxHumanizeDurationModule,
+      providers: [
+        { provide: NGX_HUMANIZER_CONFIG, useValue: config },
+        NgxHumanizeDurationService
+      ]
+    };
+  }
+}
