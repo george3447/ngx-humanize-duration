@@ -1,6 +1,6 @@
 # Angular Humanize Duration
 
-[![npm version](https://badge.fury.io/js/ngx-humanize-duration.svg)](https://badge.fury.io/js/ngx-humanize-duration)
+[![npm version](https://badge.fury.io/js/ngx-humanize-duration.svg)](https://badge.fury.io/js/ngx-humanize-duration) &nbsp; ![Build](https://github.com/george3447/ngx-humanize-duration/workflows/Build/badge.svg?branch=master)
 
 Angular wrapper for [Humanize Duration](https://www.npmjs.com/package/humanize-duration) library. Provides Angular pipe and service.
 
