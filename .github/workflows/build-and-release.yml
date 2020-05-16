@@ -1,4 +1,4 @@
-name: Build
+name: Build And Release
 on:
   push:
     branches:
@@ -42,9 +42,9 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: v${{ steps.package-version.outputs.current-version}}
-          commit: ${GITHUB_SHA}
+          commit: $GITHUB_SHA
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifact: dist/**.tgz
+          artifacts: dist/**.tgz
 
       - name: Publish to npm
         run: npm publish dist/ngx-humanize-duration --access public
