@@ -42,7 +42,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: v${{ steps.package-version.outputs.current-version}}
-          commit: $GITHUB_SHA
+          commit: ${{ github.sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: dist/**.tgz
 
