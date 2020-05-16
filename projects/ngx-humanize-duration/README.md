@@ -106,7 +106,7 @@ If you want to override the defaults at Component level
 </p>
 ```
 
-If you want to override the defaults at Component level
+If you want to override the defaults at Service level
 
 ```ts
 import { NgxHumanizeDurationService } from "ngx-humanize-duration";
