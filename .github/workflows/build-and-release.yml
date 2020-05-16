@@ -1,4 +1,4 @@
-name: Build And Release
+name: Build
 on:
   push:
     branches:
@@ -44,7 +44,6 @@ jobs:
           tag: v${{ steps.package-version.outputs.current-version}}
           commit: ${{ github.sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: dist/**.tgz
 
       - name: Publish to npm
         uses: actions/setup-node@v1
