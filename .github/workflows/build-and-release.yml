@@ -47,6 +47,10 @@ jobs:
           artifacts: dist/**.tgz
 
       - name: Publish to npm
-        run: npm publish dist/ngx-humanize-duration --access public
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
+        run: npm publish dist/ngx-humanize-duration
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
