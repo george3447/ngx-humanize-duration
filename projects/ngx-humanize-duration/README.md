@@ -7,7 +7,7 @@ Angular wrapper for [Humanize Duration](https://www.npmjs.com/package/humanize-d
 ## Installation
 
 ```sh
-npm install ngx-humanize-duration
+npm install humanize-duration ngx-humanize-duration
 ```
 
 ## Quick Start
