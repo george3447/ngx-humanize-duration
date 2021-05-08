@@ -46,7 +46,7 @@
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
     "ms": "^2.1.2",
-    "ng-packagr": "^9.0.0",
+    "ng-packagr": "^10.1.1",
     "protractor": "~5.4.3",
     "puppeteer": "^3.0.4",
     "ts-node": "~8.3.0",
