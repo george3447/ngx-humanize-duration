@@ -11,7 +11,7 @@ import { NgxHumanizeDurationService } from './ngx-humanize-duration.service';
   providers: []
 })
 export class NgxHumanizeDurationModule {
-  static forRoot(config?: NgxHumanizerOptions): ModuleWithProviders {
+  static forRoot(config?: NgxHumanizerOptions): ModuleWithProviders<NgxHumanizeDurationModule> {
     return {
       ngModule: NgxHumanizeDurationModule,
       providers: [
@@ -19,7 +19,7 @@ export class NgxHumanizeDurationModule {
       ]
     };
   }
-  static forFeature(config?: NgxHumanizerOptions): ModuleWithProviders {
+  static forFeature(config?: NgxHumanizerOptions): ModuleWithProviders<NgxHumanizeDurationModule> {
     return {
       ngModule: NgxHumanizeDurationModule,
       providers: [

@@ -22,10 +22,12 @@
   "bugs": {
     "url": "https://github.com/george3447/ngx-humanize-duration/issues"
   },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular/common": "^9.1.7",
     "@angular/core": "^9.1.7",
-    "tslib": "^1.10.0",
     "humanize-duration": "^3.22.0"
   }
 }
