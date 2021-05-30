@@ -1,0 +1,132 @@
+<form [formGroup]="configurationForm">
+  <h2 class="text-xl p-5">Ngx Humanize Duration</h2>
+  <label class="p-5">
+    Input Value:
+    <input
+      type="number"
+      formControlName="inputValue"
+      class="border-2 border-gray-300 px-1"
+    />
+  </label>
+
+  <div formGroupName="options" class="flex flex-col">
+    <h3 class="text-lg p-5">Options</h3>
+    <label for="language" class="px-5 py-3">
+      Language:
+      <ng-select
+        class="w-64 border-2 border-gray-300"
+        [items]="languages"
+        bindLabel="name"
+        bindValue="id"
+        labelForId="language"
+        formControlName="language"
+        (clear)="onLanguageCleared()"
+      >
+      </ng-select>
+    </label>
+
+    <label for="fallbacks" class="px-5 py-3">
+      Fallbacks:
+      <ng-select
+        class="w-64 border-2 border-gray-300"
+        [items]="languages"
+        bindLabel="name"
+        bindValue="id"
+        labelForId="fallbacks"
+        formControlName="fallbacks"
+        [multiple]="true"
+        clearable="false"
+        (clear)="onFallbacksCleared()"
+      >
+      </ng-select>
+    </label>
+    <label class="px-5 py-3">
+      Delimiter:
+      <input
+        type="text"
+        formControlName="delimiter"
+        class="border-2 border-gray-300 px-1"
+      />
+    </label>
+    <label class="px-5 py-3">
+      Spacer:
+      <input
+        type="text"
+        formControlName="spacer"
+        class="border-2 border-gray-300 px-1"
+      />
+    </label>
+    <label class="px-5 py-3">
+      Largest:
+      <input
+        type="number"
+        formControlName="largest"
+        class="border-2 border-gray-300 px-1"
+      />
+    </label>
+    <label for="units" class="px-5 py-3">
+      Units:
+      <ng-select
+        class="w-64 border-2 border-gray-300"
+        [items]="units"
+        bindLabel="name"
+        bindValue="id"
+        labelForId="units"
+        formControlName="units"
+        [multiple]="true"
+        (clear)="onUnitsCleared()"
+      >
+      </ng-select
+    ></label>
+    <label class="px-5 py-3">
+      Round:
+      <input
+        type="checkbox"
+        formControlName="round"
+        class="border-2 border-gray-300 px-1"
+      />
+    </label>
+    <label class="px-5 py-3">
+      Decimal:
+      <input
+        type="text"
+        formControlName="decimal"
+        class="border-2 border-gray-300 px-1"
+      />
+    </label>
+    <label class="px-5 py-3">
+      Conjunction:
+      <input
+        type="text"
+        formControlName="conjunction"
+        class="border-2 border-gray-300 px-1"
+      />
+    </label>
+    <label class="px-5 py-3">
+      Serial Comma:
+      <input
+        type="checkbox"
+        formControlName="serialComma"
+        class="border-2 border-gray-300 px-1"
+      />
+    </label>
+
+    <label class="px-5 py-3">
+      Max Decimal Points:
+      <input
+        type="number"
+        formControlName="maxDecimalPoints"
+        class="border-2 border-gray-300 px-1"
+      />
+    </label>
+  </div>
+</form>
+
+<p class="text-xl p-5">
+  {{
+    configurationForm.value.inputValue
+      | humanizeDuration: configurationForm.value.options
+  }}
+</p>
+
+<p>{{ configurationForm.value.options | json }}</p>
